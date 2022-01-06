@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
-class HomePage extends StatefulWidget {
+class test extends StatefulWidget {
   @override
-  _HomePage createState() => _HomePage();
+  _test createState() => _test();
 }
 
-class _HomePage extends State<HomePage> {
+class _test extends State<test> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
