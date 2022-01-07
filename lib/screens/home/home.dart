@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:librario/screens/auth/register/register.dart';
 import 'package:librario/services/auth.dart';
 
 class Home extends StatelessWidget {

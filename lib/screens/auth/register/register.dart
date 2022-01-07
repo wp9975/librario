@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:librario/screens/auth/login/sign_in.dart';
 import 'package:librario/services/auth.dart';
@@ -13,10 +16,11 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  String error = '';
   String email = '';
   String name = '';
   String password = '';
-  String error = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,11 +110,11 @@ class _RegisterState extends State<Register> {
                   child: FlatButton(
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        dynamic result = await _auth.signInWithEmailAndPassword(
-                            email, password);
+                        dynamic result = await _auth
+                            .registerWithEmailAndPassword(email, password);
                         if (result == null) {
                           setState(() => error = 'Error register');
-                        } else {}
+                        }
                       }
                     },
                     child: Text(

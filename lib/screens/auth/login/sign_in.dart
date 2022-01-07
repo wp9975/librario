@@ -11,7 +11,8 @@ class Sign_in extends StatefulWidget {
 
 class _Sign_InState extends State<Sign_in> {
   final AuthService _auth = AuthService();
-
+  final _formKey = GlobalKey<FormState>();
+  String error = '';
   String email = '';
   String password = '';
 
@@ -36,6 +37,7 @@ class _Sign_InState extends State<Sign_in> {
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(vertical: 40.0, horizontal: 30.0),
         child: Form(
+          key: _formKey,
           child: Column(
             children: <Widget>[
               // SizedBox(height: 20),
@@ -80,7 +82,8 @@ class _Sign_InState extends State<Sign_in> {
               Padding(
                 padding: const EdgeInsets.only(
                     left: 15.0, right: 15.0, top: 30, bottom: 0),
-                child: TextField(
+                child: TextFormField(
+                  validator: (val) => val!.isEmpty ? 'Wpisz e-mail' : null,
                   autofocus: false,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -95,7 +98,8 @@ class _Sign_InState extends State<Sign_in> {
                 padding: const EdgeInsets.only(
                     left: 15.0, right: 15.0, top: 15, bottom: 30),
                 //padding: EdgeInsets.symmetric(horizontal: 15),
-                child: TextField(
+                child: TextFormField(
+                  validator: (val) => val!.length < 5 ? 'Wpisz hasło' : null,
                   obscureText: true,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -114,14 +118,12 @@ class _Sign_InState extends State<Sign_in> {
                     borderRadius: BorderRadius.circular(20)),
                 child: FlatButton(
                   onPressed: () async {
-                    dynamic result = await _auth.singInAnon();
-                    if (result == null) {
-                      print('Error signing in');
-                    } else {
-                      print('sign in');
-                      print(result.uid);
-                      print(password);
-                      print(email);
+                    if (_formKey.currentState!.validate()) {
+                      dynamic result =
+                          await _auth.signMailPassword(email, password);
+                      if (result == null) {
+                        setState(() => error = 'Error login');
+                      }
                     }
                   },
                   child: Text(
