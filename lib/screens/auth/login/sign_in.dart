@@ -31,6 +31,7 @@ class Sign_In extends StatelessWidget {
               padding: const EdgeInsets.only(
                   left: 15.0, right: 15.0, top: 30, bottom: 0),
               child: TextField(
+                autofocus: false,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email',
@@ -61,7 +62,7 @@ class Sign_In extends StatelessWidget {
                     print('Error signing in');
                   } else {
                     print('sign in');
-                    print(result);
+                    print(result.uid);
                   }
 
                   Navigator.push(
