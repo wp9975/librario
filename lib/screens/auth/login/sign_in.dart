@@ -86,9 +86,13 @@ class _Sign_InState extends State<Sign_in> {
                   validator: (val) => val!.isEmpty ? 'Wpisz e-mail' : null,
                   autofocus: false,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Email',
-                      hintText: 'Enter valid email id as abc@gmail.com'),
+                      fillColor: Colors.white,
+                      filled: true,
+                      enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.blueGrey, width: 2)),
+                      labelText: 'E-mail',
+                      hintText: 'Wpisz e-mail'),
                   onChanged: (val) {
                     setState(() => email = val);
                   },
@@ -102,9 +106,13 @@ class _Sign_InState extends State<Sign_in> {
                   validator: (val) => val!.length < 5 ? 'Wpisz hasło' : null,
                   obscureText: true,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Password',
-                      hintText: 'Enter secure password'),
+                      fillColor: Colors.white,
+                      filled: true,
+                      enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.blueGrey, width: 2)),
+                      labelText: 'Hasło',
+                      hintText: 'Wpisz hasło'),
                   onChanged: (val) {
                     setState(() => password = val);
                   },
