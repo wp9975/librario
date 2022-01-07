@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 import 'package:librario/models/user.dart';
 
@@ -40,16 +39,16 @@ class AuthService {
 
   // Register
 
-// Future signInWithEmailAndPassword(String email, String password) async {
-//     try {
-//     UserCredential result = await _auth.signInWithEmailAndPassword(
-//       email: email, password: password);
-//   User user = result.user!;
-//     return _usersFromFirebaseUser(user);
-// } catch (e) {
-//   print(e.toString());
-// }
-//   }
+  Future signInWithEmailAndPassword(String email, String password) async {
+    try {
+      UserCredential result = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      User user = result.user!;
+      return _usersFromFirebaseUser(user);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 
 //     try {
 //   UserCredential result = await _auth.createUserWithEmailAndPassword(
