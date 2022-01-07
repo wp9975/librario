@@ -5,11 +5,6 @@ class catalog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: DataTable(
-        columns: [],
-        rows: [],
-      ),
-    );
+    return Container();
   }
 }
