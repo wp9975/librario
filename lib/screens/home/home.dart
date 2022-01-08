@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:librario/screens/auth/register/register.dart';
 import 'package:librario/screens/home/components/pdf.dart';
+import 'package:librario/screens/home/components/pdfList.dart';
 import 'package:librario/screens/home/components/player.dart';
 import 'package:librario/screens/home/components/start.dart';
 import 'package:librario/screens/home/components/katalog.dart';

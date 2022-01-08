@@ -188,6 +188,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.1"
+  flutter_file_manager:
+    dependency: "direct main"
+    description:
+      name: flutter_file_manager
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
+  flutter_full_pdf_viewer:
+    dependency: "direct main"
+    description:
+      name: flutter_full_pdf_viewer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.6"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -297,7 +311,7 @@ packages:
     source: hosted
     version: "1.0.1"
   path:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path
       url: "https://pub.dartlang.org"
@@ -317,6 +331,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.11"
+  path_provider_ex:
+    dependency: "direct main"
+    description:
+      name: path_provider_ex
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   path_provider_ios:
     dependency: transitive
     description:

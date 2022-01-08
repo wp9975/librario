@@ -10,7 +10,7 @@ class Pdf extends StatefulWidget {
 
 class _PdfState extends State<Pdf> {
   final GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
-  static String pdfUrl = 'null';
+  static String pdfUrl = '';
   @override
   void initState() {
     super.initState();
@@ -20,7 +20,7 @@ class _PdfState extends State<Pdf> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Syncfusion Flutter PDF Viewer'),
+        title: const Text('PDF Viewer'),
         actions: <Widget>[
           IconButton(
             icon: const Icon(
