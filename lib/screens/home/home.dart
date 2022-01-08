@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
   final screens = [
     start(),
     catalog(),
-    Reader(),
+    Pdf(),
     player(),
   ];
 

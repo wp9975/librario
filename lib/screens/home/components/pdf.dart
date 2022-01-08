@@ -1,23 +1,42 @@
-import 'dart:async';
-import 'dart:io';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'start.dart';
 
-class Reader extends StatefulWidget {
+/// Represents Homepage for Navigation
+class Pdf extends StatefulWidget {
   @override
-  _ReaderState createState() => _ReaderState();
+  _PdfState createState() => _PdfState();
 }
 
-class _ReaderState extends State<Reader> {
+class _PdfState extends State<Pdf> {
+  final GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
+  static String pdfUrl = 'null';
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('Wybierz Książkę z katalogu!'),
+      appBar: AppBar(
+        title: const Text('Syncfusion Flutter PDF Viewer'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(
+              Icons.bookmark,
+              color: Colors.white,
+              semanticLabel: 'Bookmark',
+            ),
+            onPressed: () {
+              _pdfViewerKey.currentState?.openBookmarkView();
+            },
+          ),
+        ],
+      ),
+      body: SfPdfViewer.network(
+        pdfUrl,
+        key: _pdfViewerKey,
       ),
     );
   }
