@@ -60,7 +60,22 @@ class DatabaseService {
           imgUrl: doc['imgUrl'] ?? '0');
     }).toList();
   }
+
+  // Future deleteBook() async {
+  //   FirebaseFirestore.instance
+  //       .collection('books_data')
+  //       .where('tytul', isEqualTo: tytul)
+  //       .get()
+  //       .then((value) {
+  //     value.docs.forEach((element) {
+  //       FirebaseFirestore.instance
+  //           .collection("eventDetails")
+  //           .doc(element.id)
+  //           .delete()
+  //           .then((value) {
+  //         print("Success!");
+  //       });
+  //     });
+  //   });
+  // }
 }
-
-// get books stream
-

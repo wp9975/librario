@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:librario/models/books.dart';
+import 'package:librario/screens/home/components/katalog.dart';
 import 'package:librario/services/database.dart';
 
 class newBook extends StatefulWidget {
@@ -20,7 +22,7 @@ class _newBookState extends State<newBook> {
   String error = '';
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SingleChildScrollView(
         child: Form(
             child: Column(
       children: [
@@ -103,17 +105,72 @@ class _newBookState extends State<newBook> {
               color: Colors.blue, borderRadius: BorderRadius.circular(20)),
           child: FlatButton(
             onPressed: () async {
-              print(pdfUrl);
-              print(imgUrl.length);
               await listBooks.add({
                 'tytul': tytul,
                 'autor': autor,
                 'pdfUrl': pdfUrl,
                 'imgUrl': imgUrl,
               });
+              setState(() {
+                _formKey.currentState?.reset();
+              });
+              AlertDialog(
+                title: const Text('Alert'),
+                content: SingleChildScrollView(
+                  child: ListBody(
+                    children: const <Widget>[
+                      Text('Wybierz książkę z listy!'),
+                    ],
+                  ),
+                ),
+                actions: <Widget>[
+                  TextButton(
+                    child: const Text('Katalog'),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => BookList()),
+                      );
+                    },
+                  ),
+                ],
+              );
             },
             child: Text(
               'Dodaj PDF',
+              style: TextStyle(color: Colors.white, fontSize: 25),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 50,
+        ),
+        Container(
+          height: 50,
+          width: 250,
+          decoration: BoxDecoration(
+              color: Colors.blue, borderRadius: BorderRadius.circular(20)),
+          child: FlatButton(
+            onPressed: () async {
+              FirebaseFirestore.instance
+                  .collection('books_data')
+                  .where('tytul', isEqualTo: tytul)
+                  .get()
+                  .then((value) {
+                for (var element in value.docs) {
+                  FirebaseFirestore.instance
+                      .collection("eventDetails")
+                      .doc(element.id)
+                      .delete()
+                      .then((value) {
+                    print("Success!");
+                    print(element);
+                  });
+                }
+              });
+            },
+            child: Text(
+              'Usuń PDF',
               style: TextStyle(color: Colors.white, fontSize: 25),
             ),
           ),
