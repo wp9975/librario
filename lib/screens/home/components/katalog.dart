@@ -21,6 +21,7 @@ class _catalogState extends State<catalog> {
       child: Scaffold(
         appBar: AppBar(
           title: Text('Katalog'),
+          backgroundColor: Colors.brown,
         ),
         body: BookList(),
       ),
@@ -37,12 +38,7 @@ class _BookListState extends State<BookList> {
   @override
   Widget build(BuildContext context) {
     final book_data = Provider.of<List<Book>>(context);
-    book_data.forEach((Book) {
-      print(Book.tytul);
-      print(Book.autor);
-      print(Book.pdfUrl);
-      print(Book.imgUrl);
-    });
+
     return ListView.builder(
       itemCount: book_data.length,
       itemBuilder: (context, index) {

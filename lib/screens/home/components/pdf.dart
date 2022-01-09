@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:librario/screens/home/components/katalog.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import 'book_tile.dart';
@@ -14,12 +15,38 @@ class _PdfState extends State<Pdf> {
   static var pdfUrl =
       'https://wolnelektury.pl/media/book/pdf/boska-komedia.pdf';
 
+  bool x = true;
   @override
   void initState() {
     super.initState();
-    setState(() {
-      pdfUrl = BookTile.pdfPath;
-    });
+    if (BookTile.pdfPath.length > 20) {
+      print('Otwarcie ścieżki z katalogu');
+      setState(() {
+        pdfUrl = BookTile.pdfPath;
+      });
+    } else {
+      AlertDialog(
+        title: const Text('Alert'),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: const <Widget>[
+              Text('Wybierz książkę z listy!'),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('Katalog'),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => BookList()),
+              );
+            },
+          ),
+        ],
+      );
+    }
   }
 
   @override
@@ -27,6 +54,7 @@ class _PdfState extends State<Pdf> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('PDF Viewer'),
+        backgroundColor: Colors.brown,
         actions: <Widget>[
           IconButton(
             icon: const Icon(

@@ -3,7 +3,7 @@ import 'package:librario/screens/auth/register/register.dart';
 import 'package:librario/screens/home/components/pdf.dart';
 import 'package:librario/screens/home/components/pdfList.dart';
 import 'package:librario/screens/home/components/player.dart';
-import 'package:librario/screens/home/components/start.dart';
+import 'package:librario/screens/home/components/edit.dart';
 import 'package:librario/screens/home/components/katalog.dart';
 import 'package:librario/services/auth.dart';
 
@@ -16,10 +16,10 @@ class _HomeState extends State<Home> {
   final AuthService _auth = AuthService();
   int _selectedIndex = 0;
   final screens = [
-    start(),
     catalog(),
     Pdf(),
     newBook(),
+    edytuj(),
   ];
 
   // Tapped
@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text('Librario'),
         backgroundColor: Colors.brown[300],
         elevation: 0.0,
         actions: <Widget>[
@@ -53,24 +53,24 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-            backgroundColor: Colors.red,
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.topic_outlined),
             label: 'Katalog',
-            backgroundColor: Colors.green,
+            backgroundColor: Colors.brown,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.text_snippet_outlined),
             label: 'Czytnik',
-            backgroundColor: Colors.purple,
+            backgroundColor: Colors.brown,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.play_circle_outline),
-            label: 'Player',
-            backgroundColor: Colors.pink,
+            icon: Icon(Icons.add),
+            label: 'Dodaj PDF',
+            backgroundColor: Colors.brown,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Edytuj',
+            backgroundColor: Colors.brown,
           ),
         ],
         currentIndex: _selectedIndex,

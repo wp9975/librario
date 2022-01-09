@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:librario/models/books.dart';
+import 'package:librario/screens/home/home.dart';
 import 'pdf.dart';
 
 class BookTile extends StatelessWidget {
@@ -10,25 +11,22 @@ class BookTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 10),
+      padding: EdgeInsets.all(5),
       child: Card(
-        margin: EdgeInsets.fromLTRB(20, 6, 20, 0),
+        color: Colors.brown[50],
         child: ListTile(
           leading: ClipRRect(
               child: Container(
-            height: 200,
-            width: 100,
-            child: Image.network(book!.imgUrl),
+            child: Image.network(
+              book!.imgUrl,
+              width: 100,
+            ),
           )),
           title: Text(book!.tytul),
           subtitle: Text(book!.autor),
           onTap: () {
             pdfPath = book!.pdfUrl;
             print(pdfPath);
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Pdf()),
-            );
           },
         ),
       ),
