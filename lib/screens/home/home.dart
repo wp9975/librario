@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:librario/screens/auth/register/register.dart';
+
 import 'package:librario/screens/home/components/pdf.dart';
-import 'package:librario/screens/home/components/pdfList.dart';
-import 'package:librario/screens/home/components/player.dart';
-import 'package:librario/screens/home/components/edit.dart';
+
+import 'package:librario/screens/home/components/addBook.dart';
+
 import 'package:librario/screens/home/components/katalog.dart';
 import 'package:librario/services/auth.dart';
 
@@ -19,7 +19,6 @@ class _HomeState extends State<Home> {
     catalog(),
     Pdf(),
     newBook(),
-    edytuj(),
   ];
 
   // Tapped
@@ -65,11 +64,6 @@ class _HomeState extends State<Home> {
           BottomNavigationBarItem(
             icon: Icon(Icons.add),
             label: 'Dodaj PDF',
-            backgroundColor: Colors.brown,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Edytuj',
             backgroundColor: Colors.brown,
           ),
         ],
