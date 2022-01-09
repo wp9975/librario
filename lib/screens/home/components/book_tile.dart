@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:librario/models/books.dart';
+import 'pdf.dart';
 
 class BookTile extends StatelessWidget {
   final Book? book;
   BookTile({this.book});
+  static String pdfPath = '';
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +22,14 @@ class BookTile extends StatelessWidget {
           )),
           title: Text(book!.tytul),
           subtitle: Text(book!.autor),
+          onTap: () {
+            pdfPath = book!.pdfUrl;
+            print(pdfPath);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Pdf()),
+            );
+          },
         ),
       ),
     );

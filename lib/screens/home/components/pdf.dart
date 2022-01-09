@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-import 'start.dart';
+
+import 'book_tile.dart';
 
 /// Represents Homepage for Navigation
 class Pdf extends StatefulWidget {
@@ -10,10 +11,15 @@ class Pdf extends StatefulWidget {
 
 class _PdfState extends State<Pdf> {
   final GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
-  static String pdfUrl = '';
+  static var pdfUrl =
+      'https://wolnelektury.pl/media/book/pdf/boska-komedia.pdf';
+
   @override
   void initState() {
     super.initState();
+    setState(() {
+      pdfUrl = BookTile.pdfPath;
+    });
   }
 
   @override
