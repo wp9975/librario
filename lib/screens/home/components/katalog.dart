@@ -5,6 +5,8 @@ import 'package:librario/models/books.dart';
 import 'package:provider/provider.dart';
 import 'package:librario/services/database.dart';
 
+import 'book_tile.dart';
+
 class catalog extends StatefulWidget {
   @override
   _catalogState createState() => _catalogState();
@@ -13,7 +15,7 @@ class catalog extends StatefulWidget {
 class _catalogState extends State<catalog> {
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<QuerySnapshot?>.value(
+    return StreamProvider<List<Book>?>.value(
       value: DatabaseService().books_data,
       initialData: null,
       child: Scaffold(
@@ -34,10 +36,18 @@ class BookList extends StatefulWidget {
 class _BookListState extends State<BookList> {
   @override
   Widget build(BuildContext context) {
-    final book_data = Provider.of<QuerySnapshot>(context);
-    for (var docs in book_data.docs) {
-      print(docs.data());
-    }
-    return Container();
+    final book_data = Provider.of<List<Book>>(context);
+    book_data.forEach((Book) {
+      print(Book.tytul);
+      print(Book.autor);
+      print(Book.pdfUrl);
+      print(Book.imgUrl);
+    });
+    return ListView.builder(
+      itemCount: book_data.length,
+      itemBuilder: (context, index) {
+        return BookTile(book: book_data[index]);
+      },
+    );
   }
 }

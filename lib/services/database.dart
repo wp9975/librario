@@ -15,12 +15,11 @@ class DatabaseService {
   final CollectionReference listBooks =
       FirebaseFirestore.instance.collection('books_data');
 
-  // Future<void> createBooksData(
-  //     String tytul, String autor, int pdfUrl, String uid) async {
-  //   return await listBooks
-  //       .doc(uid)
-  //       .set({'Tytuł': tytul, 'Autor': autor, 'URL': pdfUrl});
-  // }
+  Future<void> createBooksData(
+      String tytul, String autor, int pdfUrl, String imgUrl) async {
+    return await listBooks.doc(autor).set(
+        {'tytul': tytul, 'autor': autor, 'pdfUrl': pdfUrl, 'imgUrl': imgUrl});
+  }
 
   // Future updateBooksList(
   //     String tytul, String autor, int pdfUrl, String uid) async {
@@ -45,17 +44,23 @@ class DatabaseService {
     }
   }
 
-  Stream<QuerySnapshot> get books_data {
-    return listBooks.snapshots();
+// get books stream
+  Stream<List<Book>> get books_data {
+    return listBooks.snapshots().map(_booksListFromSnapshot);
   }
 
-// List<Book> _booksListFromSnapshot(QuerySnapshot snapshot) {
-//   return snapshot.docs.map((doc) {
-//     //print(doc.data);
-//     return Book(
-//         tytul: doc.data['tytul'] ?? '',
-//         autor: doc.data['autor'] ?? 0,
-//         pdfUrl: doc.data['pdfUrl'] ?? '0');
-//   }).toList();
-//
+// Book list form snapshot
+  List<Book> _booksListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) {
+      //print(doc.data);
+      return Book(
+          tytul: doc['tytul'] ?? 0,
+          autor: doc['autor'] ?? 0,
+          pdfUrl: doc['pdfUrl'] ?? '0',
+          imgUrl: doc['imgUrl'] ?? '0');
+    }).toList();
+  }
 }
+
+// get books stream
+

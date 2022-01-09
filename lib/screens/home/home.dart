@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
     start(),
     catalog(),
     Pdf(),
-    player(),
+    newBook(),
   ];
 
   // Tapped
